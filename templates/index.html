@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        /* Imagen de fondo de una iglesia (URL pública) */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1548625361-987707d5bb3a?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        color: white;
+        padding: 4rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .card-hover:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        cursor: pointer;
+    }
+    .icon-box {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="hero-section text-center">
+    <h1 class="display-4 fw-bold">Sistema de Gestión de Catequesis</h1>
+    <p class="lead mb-4">Parroquia San Juan - Arquidiócesis de Quito</p>
+    <p class="mb-0">Administración eficiente de estudiantes, grupos, sacramentos y asistencias.</p>
+    <p><small class="text-white-50">Proyecto Integrador Fase 7</small></p>
+</div>
+
+<div class="row g-4">
+    
+    <div class="col-md-3">
+        <div class="card h-100 border-0 shadow-sm card-hover text-center py-4">
+            <div class="card-body">
+                <div class="icon-box text-primary">
+                    <i class="bi bi-people"></i>
+                </div>
+                <h5 class="card-title">Estudiantes</h5>
+                <p class="card-text text-muted small">Registro y ficha personal de catequizandos.</p>
+                <a href="/registrar" class="btn btn-outline-primary btn-sm mt-2">Nuevo Registro</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card h-100 border-0 shadow-sm card-hover text-center py-4">
+            <div class="card-body">
+                <div class="icon-box text-success">
+                    <i class="bi bi-collection"></i>
+                </div>
+                <h5 class="card-title">Grupos</h5>
+                <p class="card-text text-muted small">Gestión de cursos, horarios y catequistas.</p>
+                <a href="/grupos" class="btn btn-outline-success btn-sm mt-2">Ver Grupos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card h-100 border-0 shadow-sm card-hover text-center py-4">
+            <div class="card-body">
+                <div class="icon-box text-warning">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <h5 class="card-title">Inscripciones</h5>
+                <p class="card-text text-muted small">Matriculación de alumnos en grupos activos.</p>
+                <a href="/nueva_inscripcion" class="btn btn-outline-warning text-dark btn-sm mt-2">Inscribir</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card h-100 border-0 shadow-sm card-hover text-center py-4">
+            <div class="card-body">
+                <div class="icon-box text-danger">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <h5 class="card-title">Asistencias</h5>
+                <p class="card-text text-muted small">Control diario de presencia en sesiones.</p>
+                <a href="/asistencia/seleccionar_grupo" class="btn btn-outline-danger btn-sm mt-2">Tomar Lista</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

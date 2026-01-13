@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4>Registrar Estudiante</h4>
+            </div>
+            <div class="card-body">
+                <form action="/registrar" method="POST">
+                    <div class="mb-3">
+                        <label>Cédula:</label>
+                        <input type="text" name="cedula" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Nombres:</label>
+                        <input type="text" name="nombres" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Apellidos:</label>
+                        <input type="text" name="apellidos" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Guardar en MongoDB</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4>Crear Nuevo Grupo de Catequesis</h4>
+            </div>
+            <div class="card-body">
+                <form action="/guardar_grupo" method="POST">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label>Nombre del Grupo:</label>
+                            <input type="text" name="nombre_grupo" class="form-control" placeholder="Ej: Confirmación Sabados" required>
+                        </div>
+                        <div class="col">
+                            <label>Horario:</label>
+                            <input type="text" name="horario" class="form-control" placeholder="Ej: 08:00 - 10:00" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Día de Reunión:</label>
+                        <select name="dia" class="form-select">
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                            <option value="Viernes">Viernes</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Parroquia:</label>
+                        <select name="parroquia" class="form-select" required>
+                            {% for p in parroquias %}
+                                <option value="{{ p._id }}">{{ p.nombre_parroquia }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Catequista Encargado:</label>
+                        <select name="catequista" class="form-select" required>
+                            {% for c in catequistas %}
+                                <option value="{{ c._id }}">{{ c.nombres }} {{ c.apellidos }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Nivel:</label>
+                        <select name="nivel" class="form-select" required>
+                            {% for n in niveles %}
+                                <option value="{{ n._id }}">{{ n.nombre_nivel }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Crear Grupo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

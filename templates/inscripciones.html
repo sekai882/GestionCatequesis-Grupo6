@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Registro de Inscripciones</h2>
+    <a href="/nueva_inscripcion" class="btn btn-warning text-dark">
+        <i class="bi bi-pencil-square"></i> Nueva Inscripción
+    </a>
+</div>
+
+<table class="table table-bordered table-hover shadow-sm bg-white">
+    <thead class="table-warning">
+        <tr>
+            <th>Fecha</th>
+            <th>Estudiante</th>
+            <th>Grupo Asignado</th>
+            <th>Estado</th>
+            <th>Acción</th> </tr>
+    </thead>
+    <tbody>
+        {% for ins in inscripciones %}
+        <tr>
+            <td>{{ ins.fecha_inscripcion.strftime('%d/%m/%Y') }}</td>
+            <td>{{ ins.estudiante.nombre }}</td>
+            <td>{{ ins.grupo.nombre_grupo }}</td>
+            <td>
+                <span class="badge bg-success">{{ ins.estado }}</span>
+            </td>
+            <td>
+                <a href="/eliminar_inscripcion/{{ ins._id }}" 
+                   class="btn btn-outline-danger btn-sm"
+                   onclick="return confirm('¿Seguro? El estudiante será eliminado de la lista del grupo.')">
+                   <i class="bi bi-x-circle"></i> Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

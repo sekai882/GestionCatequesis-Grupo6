@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4>Editar Estudiante</h4>
+            </div>
+            <div class="card-body">
+                <form action="/editar/{{ estudiante._id }}" method="POST">
+                    
+                    <div class="mb-3">
+                        <label>Cédula (No editable):</label>
+                        <input type="text" class="form-control" value="{{ estudiante.cedula }}" disabled readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Nombres:</label>
+                        <input type="text" name="nombres" class="form-control" value="{{ estudiante.nombres }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Apellidos:</label>
+                        <input type="text" name="apellidos" class="form-control" value="{{ estudiante.apellidos }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Dirección:</label>
+                        <input type="text" name="direccion" class="form-control" value="{{ estudiante.direccion or '' }}">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <a href="/consultas" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

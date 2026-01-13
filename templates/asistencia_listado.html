@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Historial de Asistencias (Últimos registros)</h2>
+<table class="table table-hover mt-3">
+    <thead class="table-secondary">
+        <tr>
+            <th>Fecha</th>
+            <th>Estudiante</th>
+            <th>Estado</th>
+            <th>Observación</th>
+            <th>Acción</th> </tr>
+    </thead>
+    <tbody>
+        {% for asis in asistencias %}
+        <tr>
+            <td>{{ asis.fecha_sesion.strftime('%d/%m/%Y') }}</td>
+            <td>{{ asis.inscripcion.estudiante }}</td>
+            <td>
+                {% if asis.estado == 'Presente' %}
+                    <span class="badge bg-success">Presente</span>
+                {% elif asis.estado == 'Ausente' %}
+                    <span class="badge bg-danger">Ausente</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">{{ asis.estado }}</span>
+                {% endif %}
+            </td>
+            <td>{{ asis.observacion }}</td>
+            <td>
+                <a href="/eliminar_asistencia/{{ asis._id }}" 
+                   class="btn btn-danger btn-sm p-1 px-2"
+                   onclick="return confirm('¿Borrar este registro de asistencia?')">
+                   <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

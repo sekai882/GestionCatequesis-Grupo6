@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4>Nueva Inscripción</h4>
+            </div>
+            <div class="card-body">
+                <form action="/guardar_inscripcion" method="POST">
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Seleccione el Estudiante:</label>
+                        <select name="estudiante" class="form-select" size="5" required>
+                            {% for est in estudiantes %}
+                                <option value="{{ est._id }}">
+                                    {{ est.cedula }} - {{ est.nombres }} {{ est.apellidos }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">Puede buscar por cédula o nombre en la lista.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Seleccione el Grupo:</label>
+                        <select name="grupo" class="form-select" required>
+                            <option value="" selected disabled>-- Seleccione un Grupo --</option>
+                            {% for grp in grupos %}
+                                <option value="{{ grp._id }}">
+                                    {{ grp.nombre_grupo }} ({{ grp.dia_reunion }} {{ grp.horario }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100">Registrar Inscripción</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

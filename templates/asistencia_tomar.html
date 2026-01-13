@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+        <h4 class="mb-0">Registro de Asistencia: {{ grupo.nombre_grupo }}</h4>
+        <span class="badge bg-light text-dark">{{ grupo.dia_reunion }}</span>
+    </div>
+    <div class="card-body">
+        <form action="/guardar_asistencia" method="POST">
+            
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Fecha de Sesión:</label>
+                    <input type="date" name="fecha" class="form-control" required 
+                           value="{{ fecha_hoy }}"> </div>
+                <div class="col-md-8">
+                    <label>Observación General (Tema del día):</label>
+                    <input type="text" name="observacion" class="form-control" placeholder="Ej: Parábola del Sembrador">
+                </div>
+            </div>
+
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Estudiante</th>
+                        <th class="text-center">Asistencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ins in inscripciones %}
+                    <tr>
+                        <td>
+                            <strong>{{ ins.estudiante.nombre }}</strong>
+                            <input type="hidden" name="id_inscripcion" value="{{ ins._id }}">
+                            <input type="hidden" name="nombre_{{ ins._id }}" value="{{ ins.estudiante.nombre }}">
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <input type="radio" class="btn-check" name="estado_{{ ins._id }}" id="p_{{ ins._id }}" value="Presente" checked>
+                                <label class="btn btn-outline-success" for="p_{{ ins._id }}">Presente</label>
+
+                                <input type="radio" class="btn-check" name="estado_{{ ins._id }}" id="a_{{ ins._id }}" value="Ausente">
+                                <label class="btn btn-outline-danger" for="a_{{ ins._id }}">Ausente</label>
+
+                                <input type="radio" class="btn-check" name="estado_{{ ins._id }}" id="j_{{ ins._id }}" value="Justificada">
+                                <label class="btn btn-outline-warning" for="j_{{ ins._id }}">Justificada</label>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center text-danger">
+                            No hay alumnos inscritos en este grupo. Vaya a "Inscripciones" para agregar alumnos.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if inscripciones %}
+            <button type="submit" class="btn btn-success w-100 btn-lg">Guardar Asistencia</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<script>
+    document.querySelector('input[type="date"]').valueAsDate = new Date();
+</script>
+{% endblock %}

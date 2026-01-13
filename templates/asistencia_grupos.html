@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Tomar Asistencia: Seleccione un Grupo</h2>
+<div class="row">
+    {% for grupo in grupos %}
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm h-100 border-primary">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ grupo.nombre_grupo }}</h5>
+                <p class="card-text">{{ grupo.dia_reunion }} - {{ grupo.horario }}</p>
+                <p class="text-muted"><small>{{ grupo.parroquia.nombre }}</small></p>
+                <a href="/asistencia/tomar/{{ grupo._id }}" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-check2-square"></i> Tomar Lista
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
