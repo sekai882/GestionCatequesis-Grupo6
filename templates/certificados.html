@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Certificados</h2>
+    <a href="/generar_certificado" class="btn btn-success">Generar</a>
+</div>
+<div class="row">
+    {% for c in certificados %}
+    <div class="col-md-6 mb-3">
+        <div class="card border-success">
+            <div class="card-body">
+                <h5 class="card-title">{{ c.sacramento }}</h5>
+                <p>Otorgado a: <b>{{ c.estudiante }}</b></p>
+                <small>{{ c.fechaEmision.strftime('%Y-%m-%d') }}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

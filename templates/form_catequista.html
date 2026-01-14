@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card col-md-6 mx-auto">
+    <div class="card-header">Nuevo Catequista</div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-2"><input name="nombre" class="form-control" placeholder="Nombre" required></div>
+            <div class="mb-2"><input name="apellido" class="form-control" placeholder="Apellido" required></div>
+            <div class="mb-2"><input name="cedula" class="form-control" placeholder="Cédula" required></div>
+            <div class="mb-2"><input name="telefono" class="form-control" placeholder="Teléfono" required></div>
+            <div class="mb-2"><input name="correo" class="form-control" placeholder="Correo"></div>
+            <button class="btn btn-success w-100">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

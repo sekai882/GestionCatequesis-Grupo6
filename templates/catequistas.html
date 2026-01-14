@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Catequistas</h2>
+    <a href="/registrar_catequista" class="btn btn-primary">Nuevo</a>
+</div>
+<table class="table table-striped">
+    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Correo</th></tr></thead>
+    <tbody>
+        {% for c in catequistas %}
+        <tr>
+            <td>{{ c.nombre }} {{ c.apellido }}</td>
+            <td>{{ c.telefono }}</td>
+            <td>{{ c.correo }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

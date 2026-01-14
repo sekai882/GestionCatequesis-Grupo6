@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card shadow col-md-6 mx-auto border-warning">
+    <div class="card-header bg-warning text-dark">
+        <b>Registrar Evaluación (Simulación Trigger)</b>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label>Estudiante:</label>
+                <select name="inscripcion" class="form-select">
+                    {% for i in inscripciones %}
+                        <option value="{{ i._id }}">{{ i.estudiante.nombre }} - {{ i.grupo.nombre_grupo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Calificación:</label>
+                <input type="number" step="0.01" name="calificacion" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Observación:</label>
+                <textarea name="observacion" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

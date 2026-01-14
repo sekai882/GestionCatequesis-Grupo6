@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card col-md-6 mx-auto">
+    <div class="card-header bg-success text-white">Generar Certificado</div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label>Estudiante:</label>
+                <select name="estudiante" class="form-select">
+                    {% for e in estudiantes %}
+                        <option value="{{ e._id }}">{{ e.nombres }} {{ e.apellidos }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Sacramento:</label>
+                <select name="sacramento" class="form-select">
+                    <option>Bautismo</option>
+                    <option>Primera Comunión</option>
+                    <option>Confirmación</option>
+                </select>
+            </div>
+            <button class="btn btn-success w-100">Generar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
